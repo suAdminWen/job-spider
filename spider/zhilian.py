@@ -26,7 +26,7 @@ def get_new_details():
 
 
 def get_details(url):
-    time.sleep(1)
+
     try:
         soup = BeautifulSoup(get_page(url), "html.parser")
         title = soup.find("div", attrs={"class": "inner-left fl"})
@@ -46,8 +46,8 @@ def get_details(url):
         if not Job.query.filter_by(pid=pid).first():
             job = Job(pid, name, company, salary, city, date, detail)
             job.save()
-            return True
-
+        time.sleep(1)
+        return True
     except Exception as err:
         print(err)
         return False
